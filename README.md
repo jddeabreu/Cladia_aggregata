@@ -3,9 +3,12 @@ The code used in the population genetics and phylogenetic analysis of the RAD-se
 
 Scripts from publication: To Be Determined
 
-[Phylogenetics](./Phylogenetics)
+[Phylogenetics](./Phylogenetics) With imput files: [Cladia_New_Out_Nexus](./Cladia_New_Out_Nexus)
 
-[Statistics](./Statistics)
+[Statistics](./Statistics) with imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
-[fastStructure](./fastStructure)
+[fastStructure](./fastStructure) with imput files with imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
+
+[fineRADstructure](./fineRADstructure)
+
 
