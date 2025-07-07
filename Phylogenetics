@@ -1,0 +1,14 @@
+# RAxML
+raxmlHPC -s /home/FM/jdeabreu/Ipyrad/New_Out_Reduced_Data_Cladia_outfiles/New_Out_Reduced_Data_Cladia.phy  -n New_Out_Reduced_Data_Cladia -p 942334 -m  GTRCATX  -f a -x 9646564 -# 1000 -T 15 -o C2035641F, C2035148F, C1011219F -c 20
+
+# IQTREE 2
+iqtree -s ~/Ipyrad/New_Out_Reduced_Data_Cladia_outfiles/New_Out_Reduced_Data_Cladia.phy -B 1000 -T 20 --prefix Robust_ModelSelection_Ultrafast --boot-trees -m MFP
+
+# SVDquartets in PAUP
+Exe /home/FM/jdeabreu/Ipyrad/New_Out_Reduced_Data_Cladia_outfiles/Cladia_New_Out_Nexus
+Outgroup C2035641F C2035148F C1011219F
+Svdq nreps=100 evalq=all nthreads=30 bootstrap=standard  showSV=yes qformat=qmc replace=no; savetrees file=2Boots_New_out.tre supportValues=nodeLabels format=newick
+BOOTSTRAP NREPS=100
+
+# CASTER 
+./caster-site -o 91_SVD_Tree_Analysis -c ~/SVD/2Boots_New_out.tre -i ~/Ipyrad/New_Out_Reduced_Data_Cladia_outfiles/New_Out_Reduced_Data_Cladia.phy -t 10 -f phylip -r 1000 -s 1000
