@@ -2,5 +2,33 @@
 vcftools --vcf ~/Ipyrad/asia_america2_outfiles/asia_america2.vcf --max-missing 0.5 --maf 0.05 --out asia_america2 --recode
 # Convert VCF file to a PLINK file
 plink --vcf /home/FM/jdeabreu/Ipyrad/asia_america2_outfiles/asia_america2.recode.vcf --allow-extra-chr --const-fid --make-bed --out asia_neotropics
-# Running K 1 through 10
+# Running fastStructure for K 1 through 10
 for K in {1..10}; do python structure.py -K $K --input=/home/FM/jdeabreu/plink/asia_neotropics_recoded/asia_neotropics --output=/home/FM/jdeabreu/Structure_Files/Loop_out/asia_neotropics_recoded --format=bed; done
+
+# R script for Visualization
+
+library(pophelper)
+library(devtools)
+library(gridExtra)
+
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
+inds <- read.delim("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header = F)
+
+# Read the Q-matrix files into a qlist object
+Path <- setwd("/Users/14016/Desktop/meanQs/neotropics_asia_recoded/")
+Qs <- readQ(files=choose.files(multi=TRUE), indlabfromfile=F)
+tabu <- tabulateQ(Qs)
+summariseQ(tabu)
+Qs <- alignK(qlist = Qs)
+
+pop <- as.data.frame(pop.file$V2)
+class(pop)
+
+if(length(unique(sapply(Qs,nrow)))==1) Qs <- lapply(Qs,"rownames<-",inds$V1)
+# show row names of all runs and all samples
+lapply(Qs, rownames)[1:2]
+
+p1 <- plotQ(Qs[c(2:6)],imgoutput="join", returnplot=T,exportplot=F,basesize=15, showindlab = T, useindlab = T, grplab = pop, ordergrp = T, 
+            subsetgrp = c('aggregata', 'S_America', 'Thai', 'Asia'),
+            clustercol = c('blue', 'forestgreen', 'darkorchid', 'red', 'darkorange', 'yellow2', 'darkcyan', 'darkgrey', 'gold3', 'brown'),grplabsize =5)
+grid.arrange(p1$plot[[1]])
