@@ -1,0 +1,9 @@
+
+# R Script
+#AMOVA
+cladia_amova = poppr.amova(data.genind, ~Pop, cutoff = .50)
+cladia_amova
+Cladia_amova.test = randtest(cladia_amova, nrepet = 999)
+Cladia_amova.test
+str(Cladia_amova.test) 
+plot(Cladia_amova.test)
