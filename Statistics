@@ -8,6 +8,6 @@ cladia_amova
 # Monte Carlo Test with 999 Interation
 Cladia_amova.test = randtest(cladia_amova, nrepet = 999)
 Cladia_amova.test
-# Histogram showing variation between actual groups compared to the variation in simulated groups
+# Histogram showing variation between actual groups compared to the distribution in variation between simulated groups
 str(Cladia_amova.test) 
 plot(Cladia_amova.test)
