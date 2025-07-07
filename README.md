@@ -5,4 +5,4 @@ Scripts from publication: To Be Determined
 
 [Phylogenetics](./Phylogenetics)
 
-[Statistics](./AMOVA and Monte Carlo Test)
+[Statistics](./Statistics)
