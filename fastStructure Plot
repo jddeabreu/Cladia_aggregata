@@ -1,0 +1,6 @@
+# Removing loci with coverage below 50% of samples and loci with a minor allele frequency below 5% prior to fastSTRUCTURE analysis
+vcftools --vcf ~/Ipyrad/asia_america2_outfiles/asia_america2.vcf --max-missing 0.5 --maf 0.05 --out asia_america2 --recode
+# Convert VCF file to a PLINK file
+plink --vcf /home/FM/jdeabreu/Ipyrad/asia_america2_outfiles/asia_america2.recode.vcf --allow-extra-chr --const-fid --make-bed --out asia_neotropics
+# Running K 1 through 10
+for K in {1..10}; do python structure.py -K $K --input=/home/FM/jdeabreu/plink/asia_neotropics_recoded/asia_neotropics --output=/home/FM/jdeabreu/Structure_Files/Loop_out/asia_neotropics_recoded --format=bed; done
