@@ -5,7 +5,9 @@ vcftools --vcf ~/Ipyrad/asia_america2_outfiles/asia_america2.vcf --max-missing 0
 #AMOVA
 cladia_amova = poppr.amova(data.genind, ~Pop, cutoff = .50)
 cladia_amova
+# Monte Carlo Test with 999 Interation
 Cladia_amova.test = randtest(cladia_amova, nrepet = 999)
 Cladia_amova.test
+# Histogram showing variation between actual groups compared to the variation in simulated groups
 str(Cladia_amova.test) 
 plot(Cladia_amova.test)
