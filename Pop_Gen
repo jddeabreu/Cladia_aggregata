@@ -1,0 +1,141 @@
+library(vcfR)
+library(adegenet)
+library(poppr)
+library(ape) 
+library(hierfstat)
+library(qqman)
+library(mmod) 
+library(ade4)
+library(ggplot2)
+library(dplyr)
+library(RColorBrewer)
+
+location <- "C:/Users/14016/Desktop/Cladia_Project_Outfiles"
+
+vcf <- read.vcfR(file.path(location, "asia_america2.recode.vcf"))
+
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
+
+data.genlight <- vcfR2genlight(vcf, n.cores = 10)
+
+pop(data.genlight) <- pop.file[,2] 
+data.genind <- df2genind(as.data.frame(data.genlight), pop=pop(data.genlight), ploidy=1,
+                         ind.names=indNames(data.genlight), loc.names=locNames(data.genlight))
+data.genind
+
+#data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fast_neotropics_americas_AMOVA_Pop.txt", header =F)
+data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
+#data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/Fixed_Full_data_Pop.txt", header =F)
+colnames(data.genind$strata) <- c("Individual", "Pop")
+#Read hierarchy file
+hier(data.genind) <- ~Pop
+data.genind
+
+#How much is missing data
+missing <- sum(is.na(data.genind$tab))
+missing
+
+#freq = TRUE: Specifies that allele frequencies should be calculated.
+#NA.method = "mean": Instructs tab() to replace missing values (NA) with the mean allele frequency across all individuals at each locus.
+X <- tab(data.genind, freq = TRUE, NA.method = "mean")
+
+#nf is the number of PCs retained
+
+pca1 <- dudi.pca(X, scale = FALSE, scannf = FALSE, nf = 3)
+barplot(pca1$eig[1:50], main = "PCA eigenvalues", col = heat.colors(50))
+
+# Calculate the total sum of eigenvalues
+percent = pca1$eig/sum(pca1$eig)*100
+
+#Visualize PCA
+# Create a data.frame containing individual coordinates
+ind_coords = as.data.frame(pca1$li)
+# Rename columns of dataframe
+colnames(ind_coords) = c("Axis1","Axis2","Axis3")
+# Add a column containing individuals
+ind_coords$Ind = indNames(data.genind)
+# Add a column with the site IDs
+x = ind_coords$population = data.genind$pop
+
+# Calculate centroid (average) position for each population
+centroid = aggregate(cbind(Axis1, Axis2, Axis3) ~ population, data = ind_coords, FUN = mean)
+# Add centroid coordinates to ind_coords dataframe
+ind_coords = left_join(ind_coords, centroid, by = "population", suffix = c("",".cen"))
+#change Axis of transcendens_or_spec
+ind_coords <- ind_coords %>%
+  mutate(
+    Axis1.cen = if_else(population == "spec", Axis1, Axis1.cen),
+    Axis2.cen = if_else(population == "spec", Axis2, Axis2.cen),
+    Axis3.cen = if_else(population == "spec", Axis3, Axis3.cen)
+  )
+# Define colour palette
+# cols = brewer.pal(nPop(data.genind), "Set1")
+cols <- c( "darkblue",'lightgreen' ,'orange2', 'lightblue')
+# Custom x and y labels
+xlab = paste("Axis 1 (", format(round(percent[1], 1), nsmall=1)," %)", sep="")
+ylab = paste("Axis 2 (", format(round(percent[2], 1), nsmall=1)," %)", sep="")
+
+# Custom theme for ggplot2
+ggtheme = theme(axis.text.y = element_text(colour="black", size=20),
+                axis.text.x = element_text(colour="black", size=20),
+                axis.title = element_text(colour="black", size=20),
+                panel.border = element_rect(colour="black", fill=NA, size=1),
+                panel.background = element_blank(),
+                plot.title = element_text(hjust=0.5, size=15),
+                legend.text = element_text(size = 20), # Size of legend labels
+                legend.title = element_text(size = 20) # Size of legend title
+)
+
+# Scatter plot axis 1 vs. 2
+pca_plot <- ggplot(data = ind_coords, aes(x = Axis1, y = Axis2))+
+  geom_hline(yintercept = 0)+
+  geom_vline(xintercept = 0)+
+  # spider segments
+  geom_segment(aes(xend = Axis1.cen, yend = Axis2.cen, colour = population), show.legend = FALSE)+
+  # points
+  geom_point(aes(fill = population), shape = 21, size = 5, show.legend = TRUE)+
+  # centroids
+  # geom_label(data = centroid, aes(label = population, fill = population), size = 4, show.legend = FALSE)+
+  # colouring
+  scale_fill_manual(values = cols)+
+  scale_colour_manual(values = cols)+
+  # custom labels
+  labs(x = xlab, y = ylab)+
+  ggtitle("Asia and Neotropics PCA")+
+  # custom theme
+  ggtheme
+
+# Print the plot with ellipses
+#print(pca_plot)
+print(pca_plot)
+
+# The Histograms for Nei’s GST, Hedrick’s G’ST, and Jost’s D comparing Asia and the Americas
+# A new population file sorting samples into either the Americas or Asia
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fast_neotropics_americas_AMOVA_Pop.txt", header =F)
+data.genlight <- vcfR2genlight(vcf, n.cores = 10)
+
+pop(data.genlight) <- pop.file[,2] 
+data.genind <- df2genind(as.data.frame(data.genlight), pop=pop(data.genlight), ploidy=1,
+                         ind.names=indNames(data.genlight), loc.names=locNames(data.genlight))
+data.genind
+
+# Separates data into data per locus 
+obj_seploc_Cladia_gen <- seploc(data.genind)
+
+# Jost's D Histogram
+J_D <- lapply(obj_seploc_Cladia_gen, pairwise_D);
+obj_pairwiseDnum <- sapply(J_D, as.numeric);
+obj_pairwiseDnum[obj_pairwiseDnum<0] <- 0;
+Jostd_hist <- hist(obj_pairwiseDnum, breaks = 100, xlab = 'Jost D')
+
+# Gst Nei Histogram
+obj_pwGst <- lapply(obj_seploc_Cladia_gen, pairwise_Gst_Nei);
+obj_pairwiseGstnum <- sapply(obj_pwGst, as.numeric);
+obj_pairwiseGstnum[obj_pairwiseGstnum<0] <- 0;
+ngst_hist<- hist(obj_pairwiseGstnum, breaks = 100, xlab = 'Nei Gst')
+
+# Gst Hedrick Histogram
+obj_pwGstH <- lapply(obj_seploc_Cladia_gen, pairwise_Gst_Hedrick);
+obj_pairwiseGstHnum <- sapply(obj_pwGstH, as.numeric);
+obj_pairwiseGstHnum[obj_pairwiseGstHnum<0] <- 0;
+hgst_hist <- hist(obj_pairwiseGstHnum, breaks = 100, xlab = 'Hedrick Gst')
