@@ -6,3 +6,6 @@ Scripts from publication: To Be Determined
 [Phylogenetics](./Phylogenetics)
 
 [Statistics](./Statistics)
+
+[fastStructure](./fastStructure)
+
