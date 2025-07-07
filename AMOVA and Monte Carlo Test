@@ -1,3 +1,5 @@
+# Removing loci with coverage below 50% of samples and loci with a minor allele frequency below 5% prior to fastSTRUCTURE analysis
+vcftools --vcf ~/Ipyrad/asia_america2_outfiles/asia_america2.vcf --max-missing 0.5 --maf 0.05 --out asia_america2 --recode
 
 # R Script
 #AMOVA
