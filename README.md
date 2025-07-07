@@ -2,4 +2,7 @@
 The code used in the population genetics and phylogenetic analysis of the RAD-seq data from samples of Cladia aggregata.
 
 Scripts from publication: To Be Determined
+
 [Phylogenetics](./Phylogenetics)
+
+[Statistics](./AMOVA and Monte Carlo Test)
