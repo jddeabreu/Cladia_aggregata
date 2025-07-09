@@ -4,16 +4,22 @@ The code used in the population genetics and phylogenetic analysis of the RAD-se
 Scripts from publication: To Be Determined
 
 [Phylogenetics](./Phylogenetics) 
-Bash Commands for phylogenetic analysis with imput file: [Cladia_New_Out_Nexus](./Cladia_New_Out_Nexus) for SVDQuartets and imput file: New_Out_Reduced_Data_Cladia.phy(https://drive.google.com/file/d/139MlRDIIaYsnJ4n7lHqggoQq8RFwfyTO/view?usp=drive_link) for RAxML, IQTREE2, and CASTER-SITE
+
+Bash Commands for phylogenetic analysis with imput file: [Cladia_New_Out_Nexus](./Cladia_New_Out_Nexus) for SVDQuartets and imput file: [New_Out_Reduced_Data_Cladia.phy](https://drive.google.com/file/d/139MlRDIIaYsnJ4n7lHqggoQq8RFwfyTO/view?usp=drive_link) for RAxML, IQTREE2, and CASTER-SITE
 
 [Statistics](./Statistics) 
+
 R code for the AMOVA and Monte-Carlo test with imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
 [fastStructure](./fastStructure) 
+
 Bash commands and R code for the fastStructure analysis of admixture with the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
 [fineRADstructure](./fineRADstructure)
-Bash commands and R code for the fineRADstructure analysis of co-ancestry with the impute file [asia_america2.alleles](https://drive.google.com/file/d/1cr64Wyvcl9oXQiJnV7eaeRbda88NNqmI/view?usp=drive_link)
+
+Bash commands and R code for the fineRADstructure analysis of co-ancestry with the impute file: [asia_america2.alleles](https://drive.google.com/file/d/1cr64Wyvcl9oXQiJnV7eaeRbda88NNqmI/view?usp=drive_link)
+
+Cladonia squamosa Reference Genome
 
 [Reference Genome](https://drive.google.com/file/d/1yJ0Ev7ZGxHdjvZT1SsUB-_I27PE7K-G9/view?usp=drive_link)
 
