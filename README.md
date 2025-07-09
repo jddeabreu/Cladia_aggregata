@@ -3,15 +3,15 @@ The code used in the population genetics and phylogenetic analysis of the RAD-se
 
 Scripts from publication: To Be Determined
 
-#[Phylogenetics](./Phylogenetics) 
+# [Phylogenetics](./Phylogenetics) 
 
 Bash Commands for phylogenetic analysis with imput file: [Cladia_New_Out_Nexus](./Cladia_New_Out_Nexus) for SVDQuartets and imput file: [New_Out_Reduced_Data_Cladia.phy](https://drive.google.com/file/d/139MlRDIIaYsnJ4n7lHqggoQq8RFwfyTO/view?usp=drive_link) for RAxML, IQTREE2, and CASTER-SITE
 
-#[Statistics](./Statistics) 
+# [Statistics](./Statistics) 
 
 R code for the AMOVA and Monte-Carlo test with the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
-#[fastStructure](./fastStructure) 
+# [fastStructure](./fastStructure) 
 
 Bash commands and R code for the fastStructure analysis of admixture with the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
