@@ -17,7 +17,11 @@ Bash commands and R code for the fastStructure analysis of admixture with the im
 
 # [fineRADstructure](./fineRADstructure)
 
-Bash commands and R code for the fineRADstructure analysis of co-ancestry with the impute file: [asia_america2.alleles](https://drive.google.com/file/d/1cr64Wyvcl9oXQiJnV7eaeRbda88NNqmI/view?usp=drive_link)
+Bash commands and R code for the fineRADstructure analysis of co-ancestry with the imput file: [asia_america2.alleles](https://drive.google.com/file/d/1cr64Wyvcl9oXQiJnV7eaeRbda88NNqmI/view?usp=drive_link)
+
+# [PCA and Distance Measures](./PCA_and_Distance_Measures) 
+
+R code for the Principal Component Analysis and Genetic Distance Measures (Gst, G'st, and Jost's D) using the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
 
 # [Reference Genome](https://drive.google.com/file/d/1yJ0Ev7ZGxHdjvZT1SsUB-_I27PE7K-G9/view?usp=drive_link)
 
