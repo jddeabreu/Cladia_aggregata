@@ -27,9 +27,8 @@ data.genind <- df2genind(as.data.frame(data.genlight), pop=pop(data.genlight), p
                          ind.names=indNames(data.genlight), loc.names=locNames(data.genlight))
 data.genind
 
-#data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fast_neotropics_americas_AMOVA_Pop.txt", header =F)
 data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
-#data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/Fixed_Full_data_Pop.txt", header =F)
+
 colnames(data.genind$strata) <- c("Individual", "Pop")
 #Read hierarchy file
 hier(data.genind) <- ~Pop
