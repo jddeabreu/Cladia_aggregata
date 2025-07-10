@@ -25,5 +25,4 @@ R code for the Principal Component Analysis and Genetic Distance Measures (Gst, 
 
 # [Reference Genome](https://drive.google.com/file/d/1yJ0Ev7ZGxHdjvZT1SsUB-_I27PE7K-G9/view?usp=drive_link)
 
-Cladonia squamosa Reference Genome
-
+The Reference Genome: Cladonia squamosa
