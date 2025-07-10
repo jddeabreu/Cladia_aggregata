@@ -11,8 +11,8 @@ library(pophelper)
 library(devtools)
 library(gridExtra)
 
-pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
-inds <- read.delim("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header = F)
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/four_clades_Pop.txt", header =F)
+inds <- read.delim("C:/Users/14016/Desktop/Excel_For_R_popfiles/four_clades_Pop.txt", header = F)
 
 # Read the Q-matrix files into a qlist object
 Path <- setwd("/Users/14016/Desktop/meanQs/neotropics_asia_recoded/")
