@@ -13,7 +13,7 @@ R code for the AMOVA and Monte-Carlo test with the imput file: [asia_america2.re
 
 # [fastStructure](./fastStructure) 
 
-Bash commands and R code for the fastStructure analysis of admixture with the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf)
+Bash commands and R code for the fastStructure analysis of admixture with the imput file: [asia_america2.recode.vcf](./asia_america2.recode.vcf) and the population file [four_clades_Pop.txt](./four_clades_Pop.txt)
 
 # [fineRADstructure](./fineRADstructure)
 
