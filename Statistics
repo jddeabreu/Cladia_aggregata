@@ -2,10 +2,40 @@
 vcftools --vcf ~/Ipyrad/asia_america2_outfiles/asia_america2.vcf --max-missing 0.5 --maf 0.05 --out asia_america2 --recode
 
 # R Script
+library(vcfR)
+library(adegenet)
+library(poppr)
+library(ape) 
+library(hierfstat)
+library(qqman)
+library(mmod) 
+library(ade4)
+library(ggplot2)
+library(dplyr)
+library(RColorBrewer)
+
+location <- "C:/Users/14016/Desktop/Cladia_Project_Outfiles"
+
+vcf <- read.vcfR(file.path(location, "asia_america2.recode.vcf"))
+
+#pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/four_clades_Pop.txt", header =F)
+data.genlight <- vcfR2genlight(vcf, n.cores = 10)
+
+pop(data.genlight) <- pop.file[,2] 
+data.genind <- df2genind(as.data.frame(data.genlight), pop=pop(data.genlight), ploidy=1,
+                         ind.names=indNames(data.genlight), loc.names=locNames(data.genlight))
+data.genind
+
+
+data.genind$strata <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/four_clades_Pop.txt", header =F)
+colnames(data.genind$strata) <- c("Individual", "Pop")
+#Read hierarchy file
+hier(data.genind) <- ~Pop
+data.genind
 #AMOVA
 cladia_amova = poppr.amova(data.genind, ~Pop, cutoff = .50)
 cladia_amova
-# Monte Carlo Test with 999 Interation
+# Monte Carlo Test with 999 Interations
 Cladia_amova.test = randtest(cladia_amova, nrepet = 999)
 Cladia_amova.test
 # Histogram showing variation between actual groups compared to the distribution in variation between simulated groups
