@@ -18,7 +18,7 @@ location <- "C:/Users/14016/Desktop/Cladia_Project_Outfiles"
 
 vcf <- read.vcfR(file.path(location, "asia_america2.recode.vcf"))
 
-pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fixed_four_clades_AMOVA_Pop.txt", header =F)
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/four_clades_Pop.txt", header =F)
 
 data.genlight <- vcfR2genlight(vcf, n.cores = 10)
 
@@ -114,7 +114,7 @@ print(pca_plot)
 
 # The Histograms for Nei’s GST, Hedrick’s G’ST, and Jost’s D comparing Asia and the Americas
 # A new population file sorting samples into either the Americas or Asia
-pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/fast_neotropics_americas_AMOVA_Pop.txt", header =F)
+pop.file <- read.table("C:/Users/14016/Desktop/Excel_For_R_popfiles/Asia_Americas_Pop.txt", header =F)
 data.genlight <- vcfR2genlight(vcf, n.cores = 10)
 
 pop(data.genlight) <- pop.file[,2] 
