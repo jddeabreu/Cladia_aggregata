@@ -1,5 +1,5 @@
 # Cladia_aggregata
-The code used in the population genetics and phylogenetic analysis of the RAD-seq data from samples of Cladia aggregata.
+The code used in the population genetics and phylogenetic analyses of the RAD-seq data from samples of Cladia aggregata, a lichen-forming fungus with a wide geographic distribution. C. aggregata was successfully delimited and we describe the Asian populations of C. aggregata as a separate species called C. vividus. See the publication below.
 
 Scripts from publication: To Be Determined
 
