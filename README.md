@@ -1,7 +1,7 @@
 # *Cladia aggregata*
 The code used in the population genetics and phylogenetic analyses of the RAD-seq data from samples of *Cladia aggregata*, a lichen-forming fungus with a wide geographic distribution. *C. aggregata* was successfully delimited and we describe the Asian populations of *C. aggregata* as a separate species called *C. asiatica*. See the publication below.
 
-Scripts from publication: To Be Determined
+Publication: Submited to the Journal of Fungi, awaiting publication
 
 # [Phylogenetics](./Phylogenetics) 
 
